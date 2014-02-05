@@ -7,22 +7,17 @@
 
 include_recipe 'java'
 
-src_filename = ::File.basename(node['solr']['url'])
-src_filepath = "#{Chef::Config['file_cache_path']}/#{src_filename}"
-extract_path = "/opt/solr-#{node['solr']['version']}"
-
-remote_file src_filepath do
-  source node['solr']['url']
-  action :create_if_missing
+if platform_family?('debian')
+  initd_template = 'initd.debian.erb'
+else
+  initd_template = 'initd.erb'
 end
 
-bash 'unpack_solr' do
-  cwd ::File.dirname(src_filepath)
-  code <<-EOH
-    mkdir -p #{extract_path}
-    tar xzf #{src_filename} -C #{extract_path}
-  EOH
-  not_if { ::File.exists?(extract_path) }
+ark 'solr' do
+  url node['solr']['url']
+  version node['solr']['version']
+  home_dir node['solr']['dir']
+  action :install
 end
 
 directory node['solr']['data_dir'] do
@@ -37,18 +32,26 @@ template '/var/lib/solr.start' do
   group 'root'
   mode '0755'
   variables(
-    :solr_dir => extract_path,
+    :solr_dir => node['solr']['dir'],
     :solr_home => node['solr']['data_dir'],
+    :port => node['solr']['port'],
     :pid_file => '/var/run/solr.pid',
     :log_file => '/var/log/solr.log'
   )
 end
 
 template '/etc/init.d/solr' do
-  source 'initd.erb'
+  source initd_template
   owner 'root'
   group 'root'
   mode '0755'
+  variables(
+    :solr_dir => node['solr']['dir'],
+    :solr_home => node['solr']['data_dir'],
+    :port => node['solr']['port'],
+    :pid_file => '/var/run/solr.pid',
+    :log_file => '/var/log/solr.log'
+  )
 end
 
 service 'solr' do

@@ -8,5 +8,8 @@ version          '0.1.0'
 
 supports 'redhat'
 supports 'centos'
+supports 'debian'
+supports 'ubuntu'
 
 depends 'java'
+depends 'ark'
