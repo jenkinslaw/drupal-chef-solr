@@ -10,3 +10,4 @@ default['solr']['url']      = "http://apache.mirrors.lucidnetworks.net/lucene/so
 default['solr']['data_dir'] = '/etc/solr'
 default['solr']['dir'] = '/opt/solr'
 default['solr']['port'] = '8984'
+default['solr']['user'] = 'solr'
