@@ -9,5 +9,6 @@ default['solr']['version']  = '4.5.1'
 default['solr']['url']      = "http://apache.mirrors.lucidnetworks.net/lucene/solr/#{node['solr']['version']}/solr-#{node['solr']['version']}.tgz"
 default['solr']['data_dir'] = '/etc/solr'
 default['solr']['dir'] = '/opt/solr'
-default['solr']['port'] = '8984'
+default['solr']['port'] = '8983'
 default['solr']['user'] = 'solr'
+default['solr']['config'] = 'collection1/conf'
