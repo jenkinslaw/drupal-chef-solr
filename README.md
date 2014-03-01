@@ -1,5 +1,3 @@
-# chef-solr [![Build Status](https://travis-ci.org/dwradcliffe/chef-solr.png?branch=master)](https://travis-ci.org/dwradcliffe/chef-solr)
-
 Installs [solr](http://lucene.apache.org/solr/) and starts the service.
 
 ## Recipes
@@ -28,8 +26,8 @@ Installs [solr](http://lucene.apache.org/solr/) and starts the service.
 
 ## License and Author
 
-License: [MIT](https://github.com/dwradcliffe/chef-solr/blob/master/LICENSE)
+License: [MIT](https://github.com/dkinzer/chef-solr/blob/master/LICENSE)
 
-Author: [David Radcliffe](https://github.com/dwradcliffe)
+Author: [David Kinzer](https://github.com/dkinzer)
 
-Inspiration for the start script from [https://github.com/jbusby/solr-initd](https://github.com/jbusby/solr-initd)
+Originally a fork of https://github.com/dwradcliffe/chef-solr
