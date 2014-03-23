@@ -9,6 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.ssh.forward_agent = true
   config.omnibus.chef_version = :latest
+  config.berkshelf.enabled = true
 
   config.vm.provider "virtualbox" do |vb|
     config.vm.box = DEV_BASE_BOX
@@ -23,7 +24,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # Provision:
     solr_dev.vm.provision "chef_solo" do |chef|
-      chef.cookbooks_path = 'cookbooks'
       # Update apt-get.
       chef.add_recipe "apt"
 
