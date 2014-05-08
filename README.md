@@ -23,6 +23,7 @@ Installs [solr](http://lucene.apache.org/solr/) and starts the service.
 - `node['solr']['drupal']['url']` - URL to download drupal apachesolr from
 - `node['solr']['drupal']['config_files']` - Names of the Drupal apachesolr config files to use
 - `node['solr']['drupal']['config_files_path']` - Path to the drupal apachesolr config files
+- `node['solr']['drupal']['disable_stemming']` - The stemming defaults to enabled.
 
 ## License and Author
 
