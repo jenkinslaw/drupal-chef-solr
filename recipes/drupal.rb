@@ -44,7 +44,7 @@ end
 
 bash "Disable solr stemming." do
   cwd "#{node['solr']['data_dir']}/#{node['solr']['config']}"
-  code <<-EOH
+  code <<-EOF
   sed -i 's/<field name="content" type="#{content_type_a}"/<field name="content" type="#{content_type_b}"/g' schema.xml
-  EOH
+  EOF
 end
