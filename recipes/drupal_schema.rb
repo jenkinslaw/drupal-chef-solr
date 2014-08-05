@@ -21,5 +21,5 @@ template "drupal-solr-schema-template" do
   variables :schema => {
     "content_type" => "content_type",
   }
-  notifies "restart", "service"
+  notifies :restart, "service[solr]"
 end
