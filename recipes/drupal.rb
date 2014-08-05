@@ -34,17 +34,3 @@ ruby_block 'configure apachesolr-drupal' do
   notifies :restart, "service[solr]"
 end
 
-if node['solr']['drupal']['disable_stemming']
-  content_type_a = "text"
-  content_type_b = "text_und"
-else
-  content_type_a = "text_und"
-  content_type_b = "text"
-end
-
-bash "Disable solr stemming." do
-  cwd "#{node['solr']['data_dir']}/#{node['solr']['config']}"
-  code <<-EOF
-  sed -i 's/<field name="content" type="#{content_type_a}"/<field name="content" type="#{content_type_b}"/g' schema.xml
-  EOF
-end
