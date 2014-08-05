@@ -19,7 +19,7 @@ template "drupal-solr-schema-template" do
   source "drupal.schema.xml.erb"
   path "#{node['solr']['data_dir']}/#{node['solr']['config']}/schema.xml"
   variables :schema => {
-    "content_type" => "content_type",
+    "content_type" => content_type,
   }
   notifies :restart, "service[solr]"
 end
